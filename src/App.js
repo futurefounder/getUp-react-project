@@ -8,38 +8,43 @@
 // Option 2 is to create your own countdown using setTimeout or setInterval in the app component. Probably easier to go with option 1 :)
 
 import { QuantityPicker } from "react-qty-picker";
-import React from "react";
+import React, { useState } from "react";
 import Countdown from 'react-countdown';
 
 // const [currentValue]  = React.useState(value);
 
-function App(props) {
-  // render() {    
-    return (
+function App() {  
+  
+  const [count, setCount] = useState(0);
+  
+  return (
       <div>
           <div className="App" >
             Hours <QuantityPicker 
                     max={24} 
                     min={0} 
-                    onChange={(value)=>{ // here value is the final update value of the component
-                     console.log(value);}}
+                    onChange={(value) => setCount(value = count)}
                     smooth/>
+                    {/* Test Button to test state */}
+                    <button onClick={() => setCount(count + 1)}>
+                    Click me
+                    </button>
+                    <p>You clicked {count} times</p>
+                    {/* / Test Button to test state */}  
             Minutes <QuantityPicker 
-                      value={30} 
-                      max={60} 
-                      min={0} 
-                      onChange={(value)=>{ // here value is the final update value of the component
-                     console.log(value); }}
-                      smooth/>
+                    value={30} 
+                    max={60} 
+                    min={0} 
+                    onChange={(value)=>{ console.log(value); }}
+                    smooth/>
           </div>
-          <button>Start</button>
+          <button onClick={Completionist()}>Start</button>
           <p>Workout</p>  
           <Countdown date={Date.now() + 5000}>
             <Completionist />
           </Countdown>      
         </div>
     );
-  // }
 }
 
 // Random component
@@ -49,9 +54,9 @@ const Completionist = () => <span>
                                 height="315" 
                                 src="https://www.youtube.com/embed/nFIfv-jIgbI" 
                                 title="YouTube video player" 
-                                frameborder="0" 
+                                frameBorder="0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
+                                allowFullScreen>
                               </iframe>
                             </span>;
 
