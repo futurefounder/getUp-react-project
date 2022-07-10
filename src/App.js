@@ -10,16 +10,41 @@
 import { QuantityPicker } from "react-qty-picker";
 import React, { useState } from "react";
 import Countdown from 'react-countdown';
+import { ChakraProvider, Button, Container  } from '@chakra-ui/react';
+
 
 // const [currentValue]  = React.useState(value);
 
 function App() {  
   
   const [countHours, setCountHours] = useState(0);
-  const [countMinutes, setCountMinutes] = useState(0);
+  const [countMinutes, setCountMinutes] = useState(30);
+
+  function sayHello() {
+    alert('Hello!');
+  }
+
+
+// Renderer callback with condition
+
+function startRenderer()  {
+  const renderer = ({ hours, minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      return <Completionist />;
+    } else {
+      // Render a countdown
+      return (null);
+    }
+  };
+}
+
 
   return (
+    <ChakraProvider>
       <div>
+      <Container centerContent>
+
           <div className="App" >
             Hours <QuantityPicker 
                     max={24} 
@@ -42,12 +67,19 @@ function App() {
                     {/* <p>Minutes Selected {countMinutes}</p> */}
                     {console.log("Hrs:" + countHours,"Mins:" + countMinutes)}
           </div>
-          <button>Start</button>
+          <p></p>
+          <Button colorScheme='teal' onClick={() => startRenderer()}>Start</Button>
           <p>Workout</p>  
-          <Countdown date={Date.now() + 5000}>
+          <Countdown 
+            date={Date.now() + 5000}
+            autoStart={false}
+            >         
             <Completionist />
-          </Countdown>      
+          </Countdown>
+          </Container>      
         </div>
+        </ChakraProvider>
+
     );
 }
 
@@ -63,16 +95,4 @@ const Completionist = () => <span>
                                 allowFullScreen>
                               </iframe>
                             </span>;
-
-// Renderer callback with condition
-const renderer = ({ hours, minutes, seconds, completed }) => {
-  if (completed) {
-    // Render a completed state
-    return <Completionist />;
-  } else {
-    // Render a countdown
-    return <span>{hours}:{minutes}:{seconds}</span>;
-  }
-};
-
 export default App
