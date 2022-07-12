@@ -43,7 +43,7 @@ function startRenderer()  {
   return (
     <ChakraProvider>
       <div>
-      <Container centerContent>
+        <Container centerContent>
 
           <div className="App" >
             Hours <QuantityPicker 
@@ -59,11 +59,11 @@ function startRenderer()  {
                     <p>You clicked {count} times</p> */}
                     {/* / Test Button to test state */}  
             Minutes <QuantityPicker 
-                    value={30} 
-                    max={60} 
-                    min={0} 
-                    onChange={(value) => setCountMinutes(value)}
-                    smooth/>
+                      value={30} 
+                      max={60} 
+                      min={0} 
+                      onChange={(value) => setCountMinutes(value)}
+                      smooth/>
                     {/* <p>Minutes Selected {countMinutes}</p> */}
                     {console.log("Hrs:" + countHours,"Mins:" + countMinutes)}
           </div>
@@ -73,12 +73,12 @@ function startRenderer()  {
           <Countdown 
             date={Date.now() + 5000}
             autoStart={false}
-            >         
+          >         
             <Completionist />
           </Countdown>
-          </Container>      
+      </Container>      
         </div>
-        </ChakraProvider>
+    </ChakraProvider>
 
     );
 }
