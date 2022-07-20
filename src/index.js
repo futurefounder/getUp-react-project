@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Countdown from 'react-countdown';
+import React from "react";
+import ReactDOM from "react-dom";
+import Countdown from "react-countdown";
 
 import App from "./App";
 
@@ -8,5 +8,6 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')  
+
+  document.getElementById("root")
 );
